@@ -6,8 +6,7 @@
     <title>Valentine 💛</title>
 
     <style>
-        body
-        {
+        body {
             margin: 0;
             height: 100vh;
             background: linear-gradient(180deg, #fff1f6, #ffd6e5);
@@ -16,28 +15,30 @@
             align-items: center;
             font-family: system-ui, sans-serif;
         }
-        .center
-        {
+        .center {
             text-align: center;
         }
-        button
-        {
+        h2 {
+            min-height: 3em; /* prevents jump */
+        }
+        button {
             padding: 14px 26px;
             border-radius: 24px;
             border: none;
             font-size: 1rem;
             cursor: pointer;
+            margin: 8px;
         }
-        #yes
-        {
+        #yes {
             background: #ff5c8a;
             color: white;
-            transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
         }
-        #no
-        {
+        #no {
             background: #ddd;
-            position: fixed;
+        }
+        .buttons {
+            display: none; /* hidden initially */
+            justify-content: center;
         }
     </style>
 </head>
@@ -46,8 +47,11 @@
 
     <div class="center">
         <h2 id="text"></h2>
-        <button id="yes" onclick="yesClicked()">Yes 💖</button>
-        <button id="no" onclick="noClicked()">No 🙈</button>
+
+        <div class="buttons" id="buttons">
+            <button id="yes" onclick="yesClicked()">Yes 💖</button>
+            <button id="no" onclick="noClicked()">No 🙈</button>
+        </div>
     </div>
 
     <script>
@@ -58,39 +62,40 @@
         if (!from || !to)
             location.href = "propose.html";
 
-        document.getElementById("text").textContent =
-        `Will you be my Valentine 💛`;
+        const textEl = document.getElementById("text");
+        const buttons = document.getElementById("buttons");
 
-        const yes = document.getElementById("yes");
-        const no = document.getElementById("no");
-
-        let count= 0;
+        textEl.textContent = `${from} has a message for you…`;
 
 
-        function noClicked()
-        {
+        setTimeout(() => {
+            textEl.textContent = `${to}, will you be my Valentine 💛`;
+            buttons.style.display = "flex";
+        }, 2000);
+
+        let count = 0;
+
+        function noClicked() {
             count++;
-            if(count==1)
+            if(count == 1)
                 alert("yes kodukk");
-            if(count==2)
-                alert(" pavam undetto onnu accept cheyy");
-            if(count==3)
+            if(count == 2)
+                alert("pavam undetto onnu accept cheyy");
+            if(count == 3)
                 alert("please!!");
-            if(count==4)
+            if(count == 4)
                 alert("dhe pinnem...");
-            if(count==5)
+            if(count == 5)
                 alert("ith chandhanamazhayile radha , rahulinod cheythalithum valya kruratha..");
-            if(count==6)
+            if(count == 6)
                 alert("namukk life okke set akkeknde...");
-            if(count==7)
-            {
+            if(count == 7) {
                 alert("inghane reject cheyyathe...");
-                count=0;
+                count = 0;
             }
         }
 
-        function yesClicked()
-        {
+        function yesClicked() {
             location.href = `yes.html?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`;
         }
     </script>
