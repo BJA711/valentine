@@ -46,7 +46,8 @@
 <body>
 
     <div class="center">
-        <h2 id="text"></h2>
+        <h2 id="text1"></h2>
+        <h2 id="text2"></h2>
 
         <div class="buttons" id="buttons">
             <button id="yes" onclick="yesClicked()">Yes 💖</button>
@@ -62,14 +63,15 @@
         if (!from || !to)
             location.href = "propose.html";
 
-        const textEl = document.getElementById("text");
+        const textEl1 = document.getElementById("text1");
+        const textEl2 = document.getElementById("text2");
         const buttons = document.getElementById("buttons");
 
-        textEl.textContent = `${from} has a message for you…`;
+        textEl1.textContent = `${from} has a message for you…`;
 
 
         setTimeout(() => {
-            textEl.textContent = `${to}, will you be my Valentine 💛`;
+            textEl2.textContent = `${to}, will you be my Valentine 💛`;
             buttons.style.display = "flex";
         }, 2000);
 
