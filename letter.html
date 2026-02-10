@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Write a Letter 💌</title>
+
+<style>
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(180deg,#fff1f6,#ffd6e5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: system-ui, sans-serif;
+}
+
+.box {
+  width: 100%;
+  max-width: 400px;
+  background: white;
+  padding: 24px;
+  border-radius: 22px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+  align-items:center;
+  justify-content:center;
+}
+
+h2 {
+  text-align: center;
+  color: #ff5c8a;
+}
+
+input, textarea {
+  width: 100%;
+  padding-top:14px;
+  padding-bottom:14px;
+  border-radius: 14px;
+  border: none;
+  margin-bottom: 10px;
+  background: #f6f6f6;
+  font-size: 1rem;
+}
+
+textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+#count {
+  text-align: right;
+  font-size: 0.85rem;
+  color: #777;
+  margin-bottom: 14px;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  border-radius: 20px;
+  border: none;
+  background: #ff5c8a;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.output {
+  margin-top: 14px;
+}
+.card {
+  background: white;
+  border-radius: 20px;
+  padding: 22px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.output textarea {
+  background: #f1f1f1;
+}
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: #ff4e6d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.overlay-content {
+  color: white;
+  text-align: center;
+  animation: pop 0.6s cubic-bezier(.17,.89,.32,1.49);
+}
+.overlay-content p {
+  word-break: break-all;
+  overflow-wrap: anywhere;
+}
+
+.overlay-content h2 {
+  font-size: 2.4rem;
+  margin-bottom: 12px;
+}
+
+.overlay-content img {
+  width: 200px;
+  border-radius: 18px;
+}
+
+@keyframes pop {
+  from { transform: scale(0.6); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+<div class="box">
+  <h2>Write a Letter 💌</h2>
+
+  <input id="from" placeholder=" Your name">
+  <input id="to" placeholder=" Partner's name">
+
+  <textarea
+    id="msg"
+    placeholder=" Write your message here..."
+    maxlength="200"
+  ></textarea>
+
+  <div id="count">0 / 200</div>
+
+  <button onclick="generateLink()">Generate Link</button>
+
+</div>
+
+<script>
+const msgInput = document.getElementById("msg");
+const counter = document.getElementById("count");
+
+msgInput.addEventListener("input", () => {
+  const len = msgInput.value.length;
+  counter.textContent = `${len} / 200`;
+
+ });
+
+function generateLink() {
+  const from = document.getElementById("from").value.trim();
+  const to = document.getElementById("to").value.trim();
+  const msg = document.getElementById("msg").value.trim();
+
+  if (!from || !to || !msg) {
+    alert("Please fill all fields 💛");
+    return;
+  }
+
+  if (msg.length > 200) {
+    alert("Message is too long. Keep it under 200 characters.");
+    return;
+  }
+
+
+  const data = { from, to, msg };
+
+
+  const encoded = btoa(
+    unescape(encodeURIComponent(JSON.stringify(data)))
+  );
+
+  const base =
+    location.href.substring(0, location.href.lastIndexOf("/") + 1);
+
+  const link = base + `read-letter.html?id=${encoded}`;
+
+      showYesOverlay(link);
+    }
+    function showYesOverlay(link) {
+        document.body.insertAdjacentHTML("beforeend", `
+          <div class="overlay">
+            <div class="overlay-content">
+              <h3>share this link to your Partner</h3>
+              <div class="card">
+                <p>${link}</p>
+              </div>
+            </div>
+          </div>
+        `);
+      }
+</script>
+</body>
+</html>

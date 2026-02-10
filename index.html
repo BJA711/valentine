@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine 💖</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #ffe3ec, #ffd1dc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 480px;
+  padding: 24px;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 24px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+.card {
+  background: white;
+  border-radius: 20px;
+  padding: 22px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+}
+
+.card h2 {
+  margin: 12px 0 8px;
+  color: #ff5c8a;
+}
+
+.card p {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.icon {
+  font-size: 2.2rem;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+  <h1>Choose Your Valentine 💖</h1>
+
+  <div class="cards">
+
+    <div class="card" onclick="location.href='propose.html'">
+      <div class="icon">💍</div>
+      <h2>Message Propose</h2>
+      <p>Create an interactive proposal with Yes / No buttons.</p>
+    </div>
+
+
+    <div class="card" onclick="location.href='letter.html'">
+      <div class="icon">💌</div>
+      <h2>Write a Letter</h2>
+      <p>Write a heartfelt letter and share it as a link.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

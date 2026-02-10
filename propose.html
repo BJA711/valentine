@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Valentine 💖</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(180deg, #ffe3ec, #ffd1dc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: system-ui, sans-serif;
+}
+.box {
+  width: 100%;
+  max-width: 400px;
+  padding: 24px;
+  text-align: center;
+}
+input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: none;
+  margin-bottom: 12px;
+}
+button {
+  width: 100%;
+  padding: 14px;
+  border-radius: 20px;
+  border: none;
+  background: #ff5c8a;
+  color: white;
+  font-size: 1rem;
+}
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: #ff4e6d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.overlay-content {
+  color: white;
+  text-align: center;
+  animation: pop 0.6s cubic-bezier(.17,.89,.32,1.49);
+}
+
+.overlay-content h2 {
+  font-size: 2.4rem;
+  margin-bottom: 12px;
+}
+
+.overlay-content img {
+  width: 200px;
+  border-radius: 18px;
+}
+
+@keyframes pop {
+  from { transform: scale(0.6); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+<div class="box">
+  <h2>Create Your Valentine 💖</h2>
+  <input id="from" placeholder="Your name">
+<input id="to" placeholder="Partner's name">
+
+<button onclick="generateLink()">Generate Link</button>
+
+
+</div>
+
+<script>
+    function generateLink()
+    {
+      const from = document.getElementById("from").value.trim();
+      const to = document.getElementById("to").value.trim();
+
+      if (!from || !to)
+      {
+        alert("Enter both names");
+        return;
+      }
+
+      const link =location.origin +location.pathname.replace("propose.html", "")+`question.html?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`;
+      showYesOverlay(link);
+    }
+    function showYesOverlay(link) {
+        document.body.insertAdjacentHTML("beforeend", `
+          <div class="overlay">
+            <div class="overlay-content">
+              <h3>share this link to your Partner</h3>
+              <p>${link}</p>
+            </div>
+          </div>
+        `);
+      }
+</script>
+</body>
+</html>

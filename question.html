@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine 💛</title>
+
+    <style>
+        body
+        {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(180deg, #fff1f6, #ffd6e5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: system-ui, sans-serif;
+        }
+        .center
+        {
+            text-align: center;
+        }
+        button
+        {
+            padding: 14px 26px;
+            border-radius: 24px;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        #yes
+        {
+            background: #ff5c8a;
+            color: white;
+            transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+        }
+        #no
+        {
+            background: #ddd;
+            position: fixed;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="center">
+        <h2 id="text"></h2>
+        <button id="yes" onclick="yesClicked()">Yes 💖</button>
+        <button id="no" onclick="noClicked()">No 🙈</button>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(location.search);
+        const from = params.get("from");
+        const to = params.get("to");
+
+        if (!from || !to)
+            location.href = "propose.html";
+
+        document.getElementById("text").textContent =
+        `Will you be my Valentine 💛`;
+
+        const yes = document.getElementById("yes");
+        const no = document.getElementById("no");
+
+        let count= 0;
+
+
+        function noClicked()
+        {
+            count++;
+            if(count==1)
+                alert("yes kodukk");
+            if(count==2)
+                alert(" pavam undetto onnu accept cheyy");
+            if(count==3)
+                alert("please!!");
+            if(count==4)
+                alert("dhe pinnem...");
+            if(count==5)
+                alert("ith chandhanamazhayile radha , rahulinod cheythalithum valya kruratha..");
+            if(count==6)
+                alert("namukk life okke set akkeknde...");
+            if(count==7)
+            {
+                alert("inghane reject cheyyathe...");
+                count=0;
+            }
+        }
+
+        function yesClicked()
+        {
+            location.href = `yes.html?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`;
+        }
+    </script>
+</body>
+</html>
